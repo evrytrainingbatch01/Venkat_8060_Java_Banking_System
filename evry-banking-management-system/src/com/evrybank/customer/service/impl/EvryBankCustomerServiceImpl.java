@@ -15,9 +15,10 @@ public class EvryBankCustomerServiceImpl implements EvryBankCustomerService {
 	public EvryBankCustomerDao evryBankCustomerDao = new EvryBankCustomerDaoImpl();
 	Scanner scanner = new Scanner(System.in);
 
-	public EvryBankCustomerServiceImpl(){
-		
+	public EvryBankCustomerServiceImpl() {
+
 	}
+
 	public void getData() {
 		String userName;
 		String password;
@@ -42,42 +43,50 @@ public class EvryBankCustomerServiceImpl implements EvryBankCustomerService {
 	}
 
 	private static void getUserMenu(EvryBankCustomerService evryCustomerService, int cid, Scanner scanner) {
-		System.out.println("Plese press the following options: ");
-		System.out.println("1 -> Add Money");
-		System.out.println("2 -> view account");
-		System.out.println("3 -> send money");
-		System.out.println("4 -> withdraw money");
-		System.out.println("5 -> Loan request");
-		int choice = scanner.nextInt();
-		switch (choice) {
-		case 1:
-			System.out.println("Please enter the amount.");
-			int amount = scanner.nextInt();
-			if (evryCustomerService.addMoney(cid, amount)) {
-				System.out.println(" amount will add to your account with in few minutes.");
-			} else {
-				System.out.println("Sorry you are unable to add money to your account, please contact admin.");
+		boolean flag = true;
+		while (flag) {
+			System.out.println("Plese press the following options: ");
+			System.out.println("1 -> Add Money");
+			System.out.println("2 -> view account");
+			System.out.println("3 -> send money");
+			System.out.println("4 -> withdraw money");
+			System.out.println("5 -> Loan request");
+			System.out.println("6 -> Logout user");
+			int choice = scanner.nextInt();
+			switch (choice) {
+			case 1:
+				System.out.println("Please enter the amount.");
+				int amount = scanner.nextInt();
+				if (evryCustomerService.addMoney(cid, amount)) {
+					System.out.println(" amount will add to your account with in few minutes.");
+				} else {
+					System.out.println("Sorry you are unable to add money to your account, please contact admin.");
+				}
+				break;
+			case 2:
+				System.out.println("Your account details are:");
+				evryCustomerService.viewAccountDetails(cid);
+				break;
+			case 3:
+				System.out.println("Please enter receiver id:");
+				int rid = scanner.nextInt();
+				System.out.println("Please enter transfer amount:");
+				int transfer_amount = scanner.nextInt();
+				evryCustomerService.sendMoney(cid, rid, transfer_amount);
+				break;
+			case 4:
+				System.out.println("Please Enter withdraw amount:");
+				int withdrawAmount = scanner.nextInt();
+				evryCustomerService.withdrawMoney(cid, withdrawAmount);
+			case 5:
+				System.out.println("Please enter Loan amount");
+				int loanAmount = scanner.nextInt();
+				evryCustomerService.loanRequest(cid, loanAmount);
+				break;
+			case 6:
+				flag = false;
+				break;
 			}
-			break;
-		case 2:
-			System.out.println("Your account details are:");
-			evryCustomerService.viewAccountDetails(cid);
-			break;
-		case 3:
-			System.out.println("Please enter receiver id:");
-			int rid = scanner.nextInt();
-			System.out.println("Please enter transfer amount:");
-			int transfer_amount = scanner.nextInt();
-			evryCustomerService.sendMoney(cid, rid, transfer_amount);
-			break;
-		case 4:
-			System.out.println("Please Enter withdraw amount:");
-			int withdrawAmount = scanner.nextInt();
-			evryCustomerService.withdrawMoney(cid, withdrawAmount);
-		case 5:
-			System.out.println("Please enter Loan amount");
-			int loanAmount = scanner.nextInt();
-			evryCustomerService.loanRequest(cid, loanAmount);
 		}
 	}
 

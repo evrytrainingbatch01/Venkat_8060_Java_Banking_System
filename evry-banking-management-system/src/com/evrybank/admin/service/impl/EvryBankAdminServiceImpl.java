@@ -25,13 +25,12 @@ public class EvryBankAdminServiceImpl implements EvryBankAdminService {
 		Validator validator = new Validator();
 		Scanner scanner = new Scanner(System.in);
 
-		System.out.println("Welcome to Evry Bank");
-		System.out.println("Please Enter User Name:");
+		System.out.println("Please Enter Admin User Name:");
 
 		userName = scanner.next();
-		System.out.println("Please Enter Password:");
+		System.out.println("Please Enter Admin Password:");
 		password = scanner.next();
-		Customer customer= validator.validateUser(userName, password);
+		Customer customer = validator.validateUser(userName, password);
 		if (customer.getAccess() == 1) {
 			System.out.println("Welcome Admin");
 			getAdminMenu(evryBankAdminService, scanner);
@@ -42,57 +41,64 @@ public class EvryBankAdminServiceImpl implements EvryBankAdminService {
 	}
 
 	private static void getAdminMenu(EvryBankAdminService evryBankAdminService, Scanner scanner) {
-		System.out.println("Plese press the following options: ");
-		System.out.println("1 -> Add a customer");
-		System.out.println("2 -> Delete a customer");
-		System.out.println("3 -> View all customer");
-		System.out.println("4 -> Add a money to customer account");
-		System.out.println("5 -> Approve a transaction");
-		System.out.println("6 -> Provide loan");
-		int choice = scanner.nextInt();
-		switch (choice) {
-		case 1:
-			if (evryBankAdminService.addCustomer()) {
-				System.out.println("One Customer Added");
-			} else {
-				System.out.println("Customer not added");
-			}
-			break;
-		case 2:
-			if (evryBankAdminService.deleteCustomer()) {
-				System.out.println("Customer deleted");
-			} else {
-				System.out.println("Customer not deleted");
-			}
-			break;
-		case 3:
-			evryBankAdminService.viewAllCustomers();
-			break;
-		case 4:
-			System.out.println("Please enter customer id");
-			int id = scanner.nextInt();
-			if (evryBankAdminService.addMoneyToCustomer(id)) {
-				System.out.println("Money transfored to customer account");
-			} else {
-				System.out.println("Money not transfored to the customer account");
-			}
-			break;
-		case 5:
-			System.out.println("Please enter customer id");
-			int customer_id = scanner.nextInt();
-			if(evryBankAdminService.aproveTransaction(customer_id)) {
-				System.out.println("Money transfored");
-			} else {
-				System.out.println("Transaction faild");
-			}
-			break;
-		case 6:
-			System.out.println("Please enter customer id");
-			int cus_id = scanner.nextInt();
-			if(evryBankAdminService.provideLoans(cus_id)) {
-				System.out.println("Money transfored");
-			} else {
-				System.out.println("Transaction faild");
+		boolean flag = true;
+		while (flag) {
+			System.out.println("Plese press the following options: ");
+			System.out.println("1 -> Add a customer");
+			System.out.println("2 -> Delete a customer");
+			System.out.println("3 -> View all customer");
+			System.out.println("4 -> Add a money to customer account");
+			System.out.println("5 -> Approve a transaction");
+			System.out.println("6 -> Provide loan");
+			System.out.println("7 -> Logout admin");
+			int choice = scanner.nextInt();
+			switch (choice) {
+			case 1:
+				if (evryBankAdminService.addCustomer()) {
+					System.out.println("One Customer Added");
+				} else {
+					System.out.println("Customer not added");
+				}
+				break;
+			case 2:
+				if (evryBankAdminService.deleteCustomer()) {
+					System.out.println("Customer deleted");
+				} else {
+					System.out.println("Customer not deleted");
+				}
+				break;
+			case 3:
+				evryBankAdminService.viewAllCustomers();
+				break;
+			case 4:
+				System.out.println("Please enter customer id");
+				int id = scanner.nextInt();
+				if (evryBankAdminService.addMoneyToCustomer(id)) {
+					System.out.println("Money transfored to customer account");
+				} else {
+					System.out.println("Money not transfored to the customer account");
+				}
+				break;
+			case 5:
+				System.out.println("Please enter customer id");
+				int customer_id = scanner.nextInt();
+				if (evryBankAdminService.aproveTransaction(customer_id)) {
+					System.out.println("Money transfored");
+				} else {
+					System.out.println("Transaction faild");
+				}
+				break;
+			case 6:
+				System.out.println("Please enter customer id");
+				int cus_id = scanner.nextInt();
+				if (evryBankAdminService.provideLoans(cus_id)) {
+					System.out.println("Money transfored");
+				} else {
+					System.out.println("Transaction faild");
+				}
+			case 7:
+				flag = false;
+				break;
 			}
 		}
 	}
