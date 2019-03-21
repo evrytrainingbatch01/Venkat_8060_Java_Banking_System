@@ -8,8 +8,44 @@ public class Customer {
 	private String country;
 	private String mobileNumber;
 	private String email;
+	private int access;
+	private int balance;
+	private String password;
+	private int loanAmount;
 
 	public Customer() {
+	}
+
+	public int getLoanAmount() {
+		return loanAmount;
+	}
+
+	public void setLoanAmount(int loanAmount) {
+		this.loanAmount = loanAmount;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public int getBalance() {
+		return balance;
+	}
+
+	public void setBalance(int balance) {
+		this.balance = balance;
+	}
+
+	public int getAccess() {
+		return access;
+	}
+
+	public void setAccess(int access) {
+		this.access = access;
 	}
 
 	public int getCid() {
