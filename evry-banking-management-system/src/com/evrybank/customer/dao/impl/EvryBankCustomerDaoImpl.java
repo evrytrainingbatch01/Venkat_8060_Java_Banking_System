@@ -20,7 +20,7 @@ public class EvryBankCustomerDaoImpl implements EvryBankCustomerDao {
 		int result = 0;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false", "root",
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false&&allowPublicKeyRetrieval=true", "root",
 					"root");
 			PreparedStatement statement = connection
 					.prepareStatement("INSERT INTO banking.transaction (id, process_amount) values (?, ?)");
@@ -46,7 +46,7 @@ public class EvryBankCustomerDaoImpl implements EvryBankCustomerDao {
 		Customer customer = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false", "root",
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false&&allowPublicKeyRetrieval=true", "root",
 					"root");
 			PreparedStatement statement = connection.prepareStatement("SELECT * from customer where id = ?");
 			statement.setInt(1, cid);
@@ -77,7 +77,7 @@ public class EvryBankCustomerDaoImpl implements EvryBankCustomerDao {
 		Account account = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false", "root",
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false&&allowPublicKeyRetrieval=true", "root",
 					"root");
 			int balance = getBalance(cid, connection);
 			if (balance >= amount) {
@@ -151,7 +151,7 @@ public class EvryBankCustomerDaoImpl implements EvryBankCustomerDao {
 		boolean flag = false;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false", "root",
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false&&allowPublicKeyRetrieval=true", "root",
 					"root");
 			PreparedStatement statement = connection
 					.prepareStatement("insert into transaction (id, loan_request) values(?, ?)");

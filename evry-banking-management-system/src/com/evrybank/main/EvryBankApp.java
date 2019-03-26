@@ -8,7 +8,8 @@ import com.evrybank.customer.service.impl.EvryBankCustomerServiceImpl;
 public class EvryBankApp {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Welcome to Evry Bank");
+		MainMenu mainMenu = () -> System.out.println("Welcome to Evry Bank");
+		mainMenu.show();
 		boolean flag = true;
 		while (flag) {
 			System.out.println("Please enter the following option ");

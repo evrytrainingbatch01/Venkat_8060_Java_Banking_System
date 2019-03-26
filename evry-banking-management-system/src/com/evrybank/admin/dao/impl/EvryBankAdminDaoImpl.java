@@ -20,7 +20,7 @@ public class EvryBankAdminDaoImpl implements EvryBankAdminDao {
 		Customer customer = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false", "root",
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false&&allowPublicKeyRetrieval=true", "root",
 					"root");
 			PreparedStatement statement = connection
 					.prepareStatement("SELECT * FROM banking.customer where firstname = ? AND password = ?");
@@ -61,7 +61,7 @@ public class EvryBankAdminDaoImpl implements EvryBankAdminDao {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false", "root",
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false&&allowPublicKeyRetrieval=true", "root",
 					"root");
 			PreparedStatement statement = connection
 					.prepareStatement("INSERT INTO banking.customer values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -96,7 +96,7 @@ public class EvryBankAdminDaoImpl implements EvryBankAdminDao {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false", "root",
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false&&allowPublicKeyRetrieval=true", "root",
 					"root");
 			PreparedStatement statement = connection.prepareStatement("DELETE FROM banking.customer where id = ?");
 			statement.setInt(1, cid);
@@ -121,7 +121,7 @@ public class EvryBankAdminDaoImpl implements EvryBankAdminDao {
 		Customer customer;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false", "root",
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false&&allowPublicKeyRetrieval=true", "root",
 					"root");
 			PreparedStatement statement = connection.prepareStatement("SELECT * FROM banking.customer");
 			ResultSet resultSet = statement.executeQuery();
@@ -156,7 +156,7 @@ public class EvryBankAdminDaoImpl implements EvryBankAdminDao {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false", "root",
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false&&allowPublicKeyRetrieval=true", "root",
 					"root");
 			int pending_amount = getCustomerAmount(cid, connection);
 			int balance = getBalance(cid, connection);
@@ -225,7 +225,7 @@ public class EvryBankAdminDaoImpl implements EvryBankAdminDao {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false", "root",
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false&&allowPublicKeyRetrieval=true", "root",
 					"root");
 			int transfer_amount = getTransferAmount(cid, connection);
 			int balance = getBalance(cid, connection);
@@ -235,7 +235,7 @@ public class EvryBankAdminDaoImpl implements EvryBankAdminDao {
 			statement.setInt(2, cid);
 			int update = statement.executeUpdate();
 			if( update >= 1) {
-				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false", "root",
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false&&allowPublicKeyRetrieval=true", "root",
 						"root");
 				PreparedStatement statement2 = connection
 						.prepareStatement("UPDATE banking.transaction SET transfer_amount = 0 WHERE id = ?");
@@ -277,7 +277,7 @@ public class EvryBankAdminDaoImpl implements EvryBankAdminDao {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false", "root",
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false&&allowPublicKeyRetrieval=true", "root",
 					"root");
 			int loan_amount = getLoanAmount(cid, connection);
 			PreparedStatement statement = connection
@@ -286,7 +286,7 @@ public class EvryBankAdminDaoImpl implements EvryBankAdminDao {
 			statement.setInt(2, cid);
 			int update = statement.executeUpdate();
 			if( update >= 1) {
-				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false", "root",
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking?useSSL=false&&allowPublicKeyRetrieval=true", "root",
 						"root");
 				PreparedStatement statement2 = connection
 						.prepareStatement("UPDATE banking.transaction SET loan_request = 0 WHERE id = ?");

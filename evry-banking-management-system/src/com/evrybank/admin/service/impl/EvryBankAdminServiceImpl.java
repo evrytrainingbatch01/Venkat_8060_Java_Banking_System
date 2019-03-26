@@ -15,7 +15,7 @@ public class EvryBankAdminServiceImpl implements EvryBankAdminService {
 	Scanner scanner = new Scanner(System.in);
 
 	public EvryBankAdminServiceImpl() {
-
+	
 	}
 
 	public void getData() {
